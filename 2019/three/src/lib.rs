@@ -1,4 +1,3 @@
-#![warn(clippy::all)]
 use std::collections::{HashMap, HashSet};
 use std::iter::FromIterator;
 
