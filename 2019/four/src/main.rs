@@ -42,3 +42,38 @@ fn main() {
     }
     println!("matches = {}", num);
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_111111() {
+        assert!(!test(111111));
+    }
+
+    #[test]
+    fn test_223450() {
+        assert!(!test(223450));
+    }
+
+    #[test]
+    fn test_123789() {
+        assert!(!test(123789));
+    }
+
+    #[test]
+    fn test_112233() {
+        assert!(test(112233));
+    }
+
+    #[test]
+    fn test_123444() {
+        assert!(!test(123444));
+    }
+
+    #[test]
+    fn test_111122() {
+        assert!(test(111122));
+    }
+}
