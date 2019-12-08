@@ -26,7 +26,6 @@ fn test(digits: u64) -> bool {
 }
 
 fn main() {
-
     println!("111111 -> {}", test(111111));
     println!("223450 -> {}", test(223450));
     println!("123789 -> {}", test(123789));

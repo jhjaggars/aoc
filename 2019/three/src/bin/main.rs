@@ -1,5 +1,5 @@
-use std::fs;
 use std::env;
+use std::fs;
 use three;
 
 fn main() -> Result<(), std::io::Error> {

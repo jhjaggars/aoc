@@ -97,11 +97,7 @@ fn run(state: &mut Vec<i64>, input: i64) -> i64 {
                 let left = op.param(state, offset, 1);
                 let right = op.param(state, offset, 2);
                 let dest = state[offset + 3] as usize;
-                state[dest] = if left < right {
-                    1
-                } else {
-                    0
-                };
+                state[dest] = if left < right { 1 } else { 0 };
                 offset += 4;
             }
             8 => {
@@ -109,11 +105,7 @@ fn run(state: &mut Vec<i64>, input: i64) -> i64 {
                 let right = op.param(state, offset, 2);
                 let dest = state[offset + 3] as usize;
                 // println!("\t * storing {} == {} into {}", left, right, dest);
-                state[dest] = if left == right {
-                    1
-                } else {
-                    0
-                };
+                state[dest] = if left == right { 1 } else { 0 };
                 offset += 4;
             }
             _ => unreachable!("unknown op code!"),
@@ -214,7 +206,7 @@ mod test {
     fn test_equal_to_eight() {
         let program = vec![3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8];
         assert_eq!(run(&mut program.clone(), 8), 1);
-        assert_eq!(run(&mut program.clone(), 7), 0); 
+        assert_eq!(run(&mut program.clone(), 7), 0);
     }
 
     #[test]
@@ -227,36 +219,38 @@ mod test {
 
     #[test]
     fn test_equal_to_eight_im() {
-        let program = vec![3,3,1108,-1,8,3,4,3,99];
+        let program = vec![3, 3, 1108, -1, 8, 3, 4, 3, 99];
         assert_eq!(run(&mut program.clone(), 8), 1);
         assert_eq!(run(&mut program.clone(), 5), 0);
     }
 
     #[test]
     fn test_less_than_eight_im() {
-        let program = vec![3,3,1107,-1,8,3,4,3,99];
+        let program = vec![3, 3, 1107, -1, 8, 3, 4, 3, 99];
         assert_eq!(run(&mut program.clone(), 2), 1);
         assert_eq!(run(&mut program.clone(), 9), 0);
     }
 
     #[test]
     fn test_jump_pos() {
-        let program = vec![3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9];
+        let program = vec![3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, -1, 0, 1, 9];
         assert_eq!(run(&mut program.clone(), 0), 0);
     }
 
     #[test]
     fn test_jump_im() {
-        let program = vec![3,3,1105,-1,9,1101,0,0,12,4,12,99,1];
+        let program = vec![3, 3, 1105, -1, 9, 1101, 0, 0, 12, 4, 12, 99, 1];
         assert_eq!(run(&mut program.clone(), 1), 1);
         assert_eq!(run(&mut program.clone(), 2), 1);
     }
 
     #[test]
     fn test_lt_8_cmp() {
-        let program = vec![3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
-1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
-999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99];
+        let program = vec![
+            3, 21, 1008, 21, 8, 20, 1005, 20, 22, 107, 8, 21, 20, 1006, 20, 31, 1106, 0, 36, 98, 0,
+            0, 1002, 21, 125, 20, 4, 20, 1105, 1, 46, 104, 999, 1105, 1, 46, 1101, 1000, 1, 20, 4,
+            20, 1105, 1, 46, 98, 99,
+        ];
         assert_eq!(run(&mut program.clone(), 5), 999);
         assert_eq!(run(&mut program.clone(), 8), 1000);
         assert_eq!(run(&mut program.clone(), 15), 1001);
